@@ -2,6 +2,11 @@ import numpy as np
 import pandas as pd
 import urllib
 import aocd
+
+def extract_number_from_str(i):
+  f_result = list(filter(str.isdigit, i))[0]
+  return f_result
+
 # getting data from aoc:
 from aocd import get_data
 raw_data = get_data(day=2, year=2021)
@@ -13,13 +18,13 @@ hor_pos = 0
 depth = 0
 for i in l:
     if "forward" in i:
-        s = list(filter(str.isdigit, i))[0]
+        s = extract_number_from_str(i)
         hor_pos += int(s)
     elif "down" in i:
-        s = list(filter(str.isdigit, i))[0]
+        s = extract_number_from_str(i)
         depth += int(s)
     elif "up" in i:
-        s = list(filter(str.isdigit, i))[0]
+        s = extract_number_from_str(i)
         depth -= int(s)
 
 # getting final results
